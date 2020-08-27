@@ -4,9 +4,9 @@ Add FunctionBuilder syntax using Buildable Protocol.
 
 ```swift
 extension Array: Buildable {
-  static func empty() -> Array { [] }
-  static func merge(_ lhs: Array, _ rhs: Array) -> Array {
-    lhs + rhs
+  public static func empty() -> Self { [] }
+  public mutating func merge(_ value: Self) {
+    append(contentsOf: value)
   }
 }
 

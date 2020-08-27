@@ -6,16 +6,13 @@
 //
 
 /// Adding FucntionBuilder feature in some Type.
-public protocol Buildable: _Builder {
+public protocol Buildable {
     static func empty() -> Self
-    static func merge(_ lhs: Self, _ rhs: Self) -> Self
+    mutating func merge(_ value: Self)
 }
 
 extension Buildable {
-    public func _build() -> Self { self }
-
-    public static func build<C>(@FunctionBuilder<Self> _ builder: () -> C) -> Self
-    where C: _Builder, C.BuildTarget == Self {
-        return builder()._build()
+    public static func build(@FunctionBuilder<Self> _ body: () -> Self) -> Self {
+        return body()
     }
 }

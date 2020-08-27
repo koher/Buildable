@@ -2,12 +2,12 @@ import XCTest
 @testable import Buildable
 
 extension Array: Buildable {
-    public static func empty() -> Array {
+    public static func empty() -> Self {
         []
     }
 
-    public static func merge(_ lhs: Array, _ rhs: Array) -> Array {
-        lhs + rhs
+    public mutating func merge(_ value: Self) {
+        append(contentsOf: value)
     }
 }
 
